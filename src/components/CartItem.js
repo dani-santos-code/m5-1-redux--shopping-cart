@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import CloseButton from "./CloseButton";
 
 const CartItemWrapper = styled.ul`
   list-style-type: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 32px 0px 0px;
+  padding: 0px;
 `;
 const ItemCard = styled.div`
   color: white;
@@ -17,15 +18,19 @@ const ItemCard = styled.div`
   margin: 0px -16px 16px;
 `;
 
-const ItemCardHeader = styled.div`
+const ItemCardTitle = styled.div`
   display: flex;
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
   align-items: center;
   font-size: 18px;
   font-weight: 500;
   padding: 8px 16px;
+`;
+
+const ItemCardHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 const ItemCardBody = styled.div`
   font-size: 13px;
@@ -55,15 +60,13 @@ const QuantityInput = styled.input`
 `;
 
 export default function CartItem({ title, quantity }) {
-  //   const [value, setValue] = React.useState(1);
-
-  //   const handleChange = () => {
-  //     setValue(quantity + 1);
-  //   };
   return (
     <CartItemWrapper>
       <ItemCard>
-        <ItemCardHeader>{title}</ItemCardHeader>
+        <ItemCardHeader>
+          <ItemCardTitle>{title}</ItemCardTitle>
+          <CloseButton />
+        </ItemCardHeader>
         <ItemCardBody>
           Quantity
           <QuantityInput></QuantityInput>
