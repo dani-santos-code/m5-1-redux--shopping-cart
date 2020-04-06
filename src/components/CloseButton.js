@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { removeItem } from "../actions";
+import { useDispatch } from "react-redux";
 
 const Button = styled.button`
   align-self: center;
@@ -9,9 +11,10 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
 `;
-export default function CloseButton() {
+export default function CloseButton({ id }) {
+  const dispatch = useDispatch();
   return (
-    <Button>
+    <Button onClick={() => dispatch(removeItem(id))}>
       <svg
         fill="none"
         height="16"

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CloseButton from "./CloseButton";
+import { useSelector } from "react-redux";
 
 const CartItemWrapper = styled.ul`
   list-style-type: none;
@@ -59,19 +60,25 @@ const QuantityInput = styled.input`
   padding: 4px;
 `;
 
-export default function CartItem({ title, quantity }) {
+export default function CartItem({ title, quantity, id }) {
+  const itemById = useSelector((state) => {
+    return state[id];
+  });
+  // here I could directly check for id instead of using the selector
   return (
     <CartItemWrapper>
-      <ItemCard>
-        <ItemCardHeader>
-          <ItemCardTitle>{title}</ItemCardTitle>
-          <CloseButton />
-        </ItemCardHeader>
-        <ItemCardBody>
-          Quantity
-          <QuantityInput></QuantityInput>
-        </ItemCardBody>
-      </ItemCard>
+      {itemById !== undefined && (
+        <ItemCard>
+          <ItemCardHeader>
+            <ItemCardTitle>{title}</ItemCardTitle>
+            <CloseButton id={id} />
+          </ItemCardHeader>
+          <ItemCardBody>
+            Quantity
+            <QuantityInput></QuantityInput>
+          </ItemCardBody>
+        </ItemCard>
+      )}
     </CartItemWrapper>
   );
 }

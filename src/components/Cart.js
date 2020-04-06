@@ -75,7 +75,12 @@ export default function Cart() {
         <CartItemCount>0 items</CartItemCount>
       </div>
       {storeItems.map((item) => (
-        <CartItem key={item.id} title={item.title} quantity={item.quantity} />
+        <CartItem
+          key={item.id}
+          title={item.title}
+          quantity={item.quantity}
+          id={item.id}
+        />
       ))}
       <PurchaseWrapper>
         <TotalAmount>

@@ -10,6 +10,10 @@ export default function cartReducer(state = initialState, action) {
           quantity: 1,
         },
       };
+    case "REMOVE_ITEM":
+      const stateCopy = { ...state };
+      delete stateCopy[action.id];
+      return stateCopy;
     default:
       return state;
   }
