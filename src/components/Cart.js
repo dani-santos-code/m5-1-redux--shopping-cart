@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import CartItem from "./CartItem";
+import { getStoreItemArray } from "../reducers";
 
 const CartWrapper = styled.section`
   position: sticky;
@@ -64,13 +67,16 @@ const PurchaseButton = styled.button`
   }
 `;
 export default function Cart() {
+  const storeItems = useSelector(getStoreItemArray);
   return (
     <CartWrapper>
       <div>
         <CartH2>Your Cart</CartH2>
         <CartItemCount>0 items</CartItemCount>
       </div>
-      <CartItem />
+      {storeItems.map((item) => (
+        <CartItem key={item.id} title={item.title} quantity={item.quantity} />
+      ))}
       <PurchaseWrapper>
         <TotalAmount>
           Total: <strong>$2.19</strong>

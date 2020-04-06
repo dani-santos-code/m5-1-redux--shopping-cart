@@ -54,13 +54,19 @@ const QuantityInput = styled.input`
   padding: 4px;
 `;
 
-export default function CartItem() {
+export default function CartItem({ title, quantity }) {
+  //   const [value, setValue] = React.useState(1);
+
+  //   const handleChange = () => {
+  //     setValue(quantity + 1);
+  //   };
   return (
     <CartItemWrapper>
       <ItemCard>
-        <ItemCardHeader>Happy Corgis</ItemCardHeader>
+        <ItemCardHeader>{title}</ItemCardHeader>
         <ItemCardBody>
-          Quantity <QuantityInput value={1}></QuantityInput>
+          Quantity
+          <QuantityInput></QuantityInput>
         </ItemCardBody>
       </ItemCard>
     </CartItemWrapper>
