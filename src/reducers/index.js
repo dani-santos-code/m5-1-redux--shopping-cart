@@ -1,8 +1,11 @@
-const initialState = {};
+const initialState = {
+  totalPrice: 0,
+};
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM":
+      state.totalPrice += action.item.price;
       return {
         ...state,
         [action.item.id]: {

@@ -68,11 +68,12 @@ const PurchaseButton = styled.button`
 `;
 export default function Cart() {
   const storeItems = useSelector(getStoreItemArray);
+  const totalPrice = useSelector((state) => state.totalPrice);
   return (
     <CartWrapper>
       <div>
         <CartH2>Your Cart</CartH2>
-        <CartItemCount>0 items</CartItemCount>
+        <CartItemCount>1 items</CartItemCount>
       </div>
       {storeItems.map((item) => (
         <CartItem
@@ -84,7 +85,13 @@ export default function Cart() {
       ))}
       <PurchaseWrapper>
         <TotalAmount>
-          Total: <strong>$2.19</strong>
+          Total:
+          <strong>
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(totalPrice / 100)}
+          </strong>
         </TotalAmount>
         <PurchaseButton></PurchaseButton>
       </PurchaseWrapper>
